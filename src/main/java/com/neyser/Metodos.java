@@ -3,6 +3,7 @@ package com.neyser;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,21 +13,26 @@ public class Metodos {
     public Metodos() {
     }
 
-    public void menu() throws IOException {
+    public void menu() throws IOException
+    {
 
-        limpiarPantalla();
+        //limpiarPantalla();
 
-        System.out.println("Selecciona alguna de las opciones a ejecutar");
-        System.out.println("1. Crear Directorio\n" +
-                "2. Crear Directorios\n" +
-                "3. Crear Fichero\n" +
-                "4. Escribir Fichero 1 (write)\n" +
-                "5. Escribir Fichero 2 (BufferedWriter)\n" +
-                "6. Leer Fichero 1 (Scanner)\n" +
-                "7. Leer Fichero 2 (BufferedReader)\n" +
-                "8. Información de Fichero\n" +
-                "9. Eliminar Fichero\n" +
-                "0. Cerrar Programa");
+        System.out.println("________________________________________________");
+        System.out.println("|                MENU PRINCIPAL                 |");
+        System.out.println("|_______________________________________________|");
+        System.out.println("| Selecciona alguna de las opciones a ejecutar\t|");
+        System.out.println("| 1. Crear Directorio\t\t\t\t\t\t\t|\n" +
+                "| 2. Crear Directorios\t\t\t\t\t\t\t|\n" +
+                "| 3. Crear Fichero\t\t\t\t\t\t\t\t|\n" +
+                "| 4. Escribir Fichero 1 (write)\t\t\t\t\t|\n" +
+                "| 5. Escribir Fichero 2 (BufferedWriter)\t\t|\n" +
+                "| 6. Leer Fichero 1 (Scanner)\t\t\t\t\t|\n" +
+                "| 7. Leer Fichero 2 (BufferedReader)\t\t\t|\n" +
+                "| 8. Información de Fichero\t\t\t\t\t\t|\n" +
+                "| 9. Eliminar Fichero\t\t\t\t\t\t\t|\n" +
+                "| 0. Cerrar Programa\t\t\t\t\t\t\t|");
+        System.out.println("________________________________________________");
 
         String opcion = sc1.nextLine();
 
@@ -218,7 +224,6 @@ public class Metodos {
 
     public void leerFichero2() throws IOException
     {
-
         File dir1 = new File("Ejemplo5");
         dir1.mkdir();
 
@@ -254,51 +259,40 @@ public class Metodos {
         {
             e2.printStackTrace();
         }
+
+        menu();
     }
 
     public void datosSobreFichero() throws IOException {
-
-        /*
-        File dir1 = new File("carpetaDatos1");
-        File file1 = new File("carpetaDatos1/datos1.txt");
-        dir1.mkdirs();
-        file1.createNewFile();
-
-        */
-
-
-            /*
-            System.out.println("Nombre del fichero:" +file1.getName());
-            System.out.println("Ruta Absoluta: "+file1.getAbsolutePath());
-            System.out.println("Ruta Relativa: "+file1.getPath());
-            System.out.println("Fichero editable: "+file1.canWrite());
-            System.out.println("Fichero leible: "+file1.canRead());
-            System.out.println("Tamaño del fichero(bytes): "+file1.length());
-            // Nombre de directorios y ficheros
-            File file2 = new File("carpetaDatos1");
-
-             */
 
             File file2 = new File("./");
             String[] pathnames;
             pathnames = file2.list();
 
             for (String pathname: pathnames) {
-                System.out.println("Nombre de fichero: "+pathname);
+                File file1 = new File(pathname);
+                //System.out.println("Nombre de fichero: "+pathname);
+                System.out.println("Nombre del fichero:" +file1.getName());
+                System.out.println("Ruta Absoluta: "+file1.getAbsolutePath());
+                System.out.println("Ruta Relativa: "+file1.getPath());
+                System.out.println("Fichero editable: "+file1.canWrite());
+                System.out.println("Fichero leible: "+file1.canRead());
+                System.out.println("Tamaño del fichero(bytes): "+file1.length());
+                System.out.println();
+                // Nombre de directorios y ficheros
             }
+            menu();
 
     }
 
-    public void eliminarFichero()
-    {
-        File file1 = new File("carpetaDatos1/datos1.txt");
+    public void eliminarFichero() throws IOException {
 
-        /*
-        File file2 = new File("carpetaDatos1");
-        File file3 = new File("carpetaDatos1/datos1.txt");
-        file2.mkdir();
-        file3.createNewFile();
-         */
+
+        File dir1 = new File("carpetaDatos1");
+        dir1.mkdir();
+
+        File file1 = new File("carpetaDatos1/datos1.txt");
+        file1.createNewFile();
 
         if (file1.delete())
         {
@@ -306,16 +300,13 @@ public class Metodos {
         } else{
             System.out.println("El fichero NO ha sido eliminado");
         }
+        menu();
 
     }
 
 
-    public static void limpiarPantalla() {
-
-        for (int i = 0; i < 10; i++) {
-            System.out.println();
-        }
-
+    public static void limpiarPantalla()
+    {
 
     }
 }
