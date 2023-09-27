@@ -1,6 +1,9 @@
 package com.neyser;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Metodos {
@@ -10,6 +13,8 @@ public class Metodos {
     }
 
     public void menu() throws IOException {
+
+        limpiarPantalla();
 
         System.out.println("Selecciona alguna de las opciones a ejecutar");
         System.out.println("1. Crear Directorio\n" +
@@ -57,7 +62,8 @@ public class Metodos {
             case "0":
                 System.exit(0);
             default:
-                System.out.println("Debe seleccionar una opción vàlida");
+                limpiarPantalla();
+                System.out.println("Debe seleccionar una opción válida");
 
         }
 
@@ -300,6 +306,16 @@ public class Metodos {
         } else{
             System.out.println("El fichero NO ha sido eliminado");
         }
+
+    }
+
+
+    public static void limpiarPantalla() {
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println();
+        }
+
 
     }
 }
