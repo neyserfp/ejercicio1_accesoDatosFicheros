@@ -11,7 +11,6 @@ public class Metodos {
 
     public void menu() throws IOException {
 
-
         System.out.println("Selecciona alguna de las opciones a ejecutar");
         System.out.println("1. Crear Directorio\n" +
                 "2. Crear Directorios\n" +
@@ -64,7 +63,8 @@ public class Metodos {
 
     }
 
-    public void crearDirectorio() throws IOException {
+    public void crearDirectorio() throws IOException
+    {
         System.out.println("Escriba el nombre del directorio");
         String directorio = sc1.nextLine();
 
@@ -82,22 +82,38 @@ public class Metodos {
 
     }
 
-    public void crearDirectorios()
+    public void crearDirectorios() throws IOException
     {
-        File file2 = new File("./carpetaDatos1/carpetaDatos2");
 
-        if (file2.mkdirs())
+        System.out.println("Escriba el nombre del directorio padre");
+        String directorioPadre = sc1.nextLine();
+
+        System.out.println("Escriba el nombre del directorio hijo");
+        String directorioHijo = sc1.nextLine();
+
+        File dir2 = new File(directorioPadre+"/"+directorioHijo);
+
+        if (dir2.mkdirs())
         {
-            System.out.println("El directorio ha sido creado");
+            System.out.println("Los directorios han sido creados");
         } else
         {
-            System.out.println("El directorio no ha sido creado");
+            System.out.println("Los directorios NO han sido creados");
         }
+
+        menu();
 
     }
 
-    public void crearFichero() {
-        File file1 = new File("carpetaDatos1/datos1.txt");
+    public void crearFichero() throws IOException
+    {
+        File dir1 = new File("Ejemplo");
+        dir1.mkdir();
+
+        System.out.println("Escriba el nombre del fichero");
+        String fichero = sc1.nextLine();
+
+        File file1 = new File("Ejemplo/"+fichero);
 
         try
         {
@@ -113,23 +129,39 @@ public class Metodos {
             System.out.println("Error, no se pudo crear el fichero "+e.getMessage());
             e.printStackTrace();
         }
+        menu();
 
     }
 
-    public void escribirFichero1()
+    public void escribirFichero1() throws IOException
     {
+        File dir1 = new File("Ejemplo2");
+        dir1.mkdir();
 
+        File file1 = new File("Ejemplo2/demo.txt");
+        file1.createNewFile();
 
+        FileWriter fileWriter1 = new FileWriter(file1, false);
+        fileWriter1.write("Línea 1\n");
+        fileWriter1.write("Línea 2\n");
+        fileWriter1.write("Línea 3\n");
+
+        fileWriter1.close();
+        System.out.println("Se ha escrito en el fichero");
+
+        menu();
 
     }
 
-    public void escribirFichero2() throws IOException {
-        // Creamos un objeto que permita escribir en un fichero
-        // FileWriter: false, sobreescribe datos
-        // FileWriter: true, añadir datos
+    public void escribirFichero2() throws IOException
+    {
+        File dir1 = new File("Ejemplo3");
+        dir1.mkdir();
 
+        File file1 = new File("Ejemplo3/demo2.txt");
+        file1.createNewFile();
 
-        FileWriter fileWriter1 = new FileWriter("carpetaDatos1/datos1.txt", false);
+        FileWriter fileWriter1 = new FileWriter(file1, false);
         BufferedWriter bufferedWriter1 = new BufferedWriter(fileWriter1);
 
         bufferedWriter1.write("Línea 1\n");
@@ -138,12 +170,25 @@ public class Metodos {
         bufferedWriter1.close();
         System.out.println("Se ha escrito en el fichero");
 
+        menu();
+
     }
 
-    public void leerFichero1()
+    public void leerFichero1() throws IOException
     {
-        //File file1 = new File("carpetaDatos1");
-        File file1 = new File("carpetaDatos1/datos1.txt");
+
+        File dir1 = new File("Ejemplo4");
+        dir1.mkdir();
+
+        File file1 = new File("Ejemplo4/demo4.txt");
+        file1.createNewFile();
+
+        FileWriter fileWriter1 = new FileWriter(file1, false);
+        BufferedWriter bufferedWriter1 = new BufferedWriter(fileWriter1);
+
+        bufferedWriter1.write("Línea demo 1\n");
+        bufferedWriter1.write("Línea demo 2\n");
+        bufferedWriter1.close();
 
         try
         {
@@ -161,12 +206,25 @@ public class Metodos {
 
             e.printStackTrace();
         }
+        menu();
 
     }
 
-    public void leerFichero2()
+    public void leerFichero2() throws IOException
     {
-        File file1 = new File("carpetaDatos1/datos1.txt");
+
+        File dir1 = new File("Ejemplo5");
+        dir1.mkdir();
+
+        File file1 = new File("Ejemplo5/demo4.txt");
+        file1.createNewFile();
+
+        FileWriter fileWriter1 = new FileWriter(file1, false);
+        BufferedWriter bufferedWriter1 = new BufferedWriter(fileWriter1);
+
+        bufferedWriter1.write("Línea demo4 1\n");
+        bufferedWriter1.write("Línea demo4 2\n");
+        bufferedWriter1.close();
 
         try
         {
@@ -194,13 +252,16 @@ public class Metodos {
 
     public void datosSobreFichero() throws IOException {
 
+        /*
         File dir1 = new File("carpetaDatos1");
         File file1 = new File("carpetaDatos1/datos1.txt");
         dir1.mkdirs();
         file1.createNewFile();
 
-        if (file1.exists())
-        {
+        */
+
+
+            /*
             System.out.println("Nombre del fichero:" +file1.getName());
             System.out.println("Ruta Absoluta: "+file1.getAbsolutePath());
             System.out.println("Ruta Relativa: "+file1.getPath());
@@ -210,14 +271,15 @@ public class Metodos {
             // Nombre de directorios y ficheros
             File file2 = new File("carpetaDatos1");
 
+             */
+
+            File file2 = new File("./");
             String[] pathnames;
             pathnames = file2.list();
 
             for (String pathname: pathnames) {
                 System.out.println("Nombre de fichero: "+pathname);
             }
-
-        }
 
     }
 
