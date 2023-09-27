@@ -285,6 +285,21 @@ public class Metodos {
 
     public void eliminarFichero()
     {
+        File file1 = new File("carpetaDatos1/datos1.txt");
+
+        /*
+        File file2 = new File("carpetaDatos1");
+        File file3 = new File("carpetaDatos1/datos1.txt");
+        file2.mkdir();
+        file3.createNewFile();
+         */
+
+        if (file1.delete())
+        {
+            System.out.println("El fichero ha sido eliminado");
+        } else{
+            System.out.println("El fichero NO ha sido eliminado");
+        }
 
     }
 }
